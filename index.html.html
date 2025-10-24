@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalSite: Immediate Care Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_TRACKING_ID');
+    </script>
+</head>
+<body>
+    <header>
+        <h1>VitalSite</h1>
+        <div class="trust-badge">Verified data — field-checked</div>
+        <p class="disclaimer">Verification status is based on the last check. In emergencies, always call emergency services.</p>
+    </header>
+    <div id="toggle-container">
+        <button id="pharmacy-toggle" class="toggle-btn active">24-HR PHARMACIES</button>
+        <button id="aed-toggle" class="toggle-btn active">AED LOCATIONS</button>
+    </div>
+    <div id="search-container" style="display: none;">
+        <input type="text" id="search-input" placeholder="Search (e.g., Nearest Hospital)">
+        <button id="search-btn">Search</button>
+    </div>
+    <div id="map"></div>
+    <div id="popup" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="popup-name"></h2>
+            <div id="verification-status"></div>
+            <p id="operating-status"></p>
+            <p id="address"></p>
+            <p id="accessibility-notes"></p>
+            <img id="photo-thumb" src="" alt="Location Photo" onclick="enlargePhoto()">
+            <div class="cta-buttons">
+                <button id="navigate-btn">Navigate</button>
+                <button id="call-btn" style="display: none;">Call</button>
+                <button id="report-btn">Report Issue</button>
+            </div>
+        </div>
+    </div>
+    <div id="admin-panel" style="display: none;">
+        <input type="password" id="admin-password" placeholder="Admin Password">
+        <button id="admin-login">Login</button>
+        <div id="admin-content" style="display: none;">
+            <input type="file" id="csv-upload" accept=".csv">
+            <button id="upload-btn">Upload CSV</button>
+            <ul id="resource-list"></ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
